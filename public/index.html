@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OurPlayer - Watch Together</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="join-screen" class="screen active">
+        <div class="join-container">
+            <h1>🎬 OurPlayer</h1>
+            <p class="tagline">Watch videos together in sync</p>
+            <div class="form-group">
+                <input type="text" id="username-input" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="room-input" placeholder="Enter room code (or leave empty for new room)">
+            </div>
+            <button id="join-btn" class="btn btn-primary">Join Room</button>
+        </div>
+    </div>
+
+    <div id="player-screen" class="screen">
+        <div class="header">
+            <div class="header-left">
+                <h2>🎬 OurPlayer</h2>
+                <span class="room-info">Room: <span id="room-code"></span></span>
+            </div>
+            <div class="header-right">
+                <button id="leave-btn" class="btn btn-secondary">Leave Room</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="video-section">
+                <div class="video-controls-top">
+                    <input type="text" id="video-url-input" placeholder="Enter video URL (e.g., .mp4, .webm)" class="video-url-input">
+                    <button id="load-video-btn" class="btn btn-primary">Load Video</button>
+                </div>
+                <div class="video-container">
+                    <video id="video-player" controls>
+                        <source id="video-source" src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div id="no-video-message" class="no-video">
+                        <p>📹 No video loaded</p>
+                        <p class="small">Enter a video URL above to start watching together</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="users-panel">
+                    <h3>👥 Viewers (<span id="user-count">0</span>)</h3>
+                    <ul id="user-list" class="user-list"></ul>
+                </div>
+
+                <div class="chat-panel">
+                    <h3>💬 Chat</h3>
+                    <div id="chat-messages" class="chat-messages"></div>
+                    <div class="chat-input-container">
+                        <input type="text" id="chat-input" placeholder="Type a message..." class="chat-input">
+                        <button id="send-chat-btn" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
